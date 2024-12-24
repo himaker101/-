@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MOMO图片压缩工具</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>MOMO工具箱</title>
+    <link rel="stylesheet" href="css/base.css">
+    <!-- 每个工具的独立样式 -->
+    <link rel="stylesheet" href="tools/tool-001/css/style.css" data-tool="tool-001">
+    <link rel="stylesheet" href="tools/tool-002/css/style.css" data-tool="tool-002">
+    <link rel="stylesheet" href="tools/tool-003/css/style.css" data-tool="tool-003">
 </head>
 <body>
     <div class="app-container">
@@ -14,40 +18,7 @@
                 <h1 class="logo">MOMO</h1>
             </div>
             <nav class="nav-menu">
-                <div class="nav-group">
-                    <h3 class="nav-group-title">图片工具</h3>
-                    <ul class="nav-list">
-                        <li class="nav-item active">
-                            <a href="#" class="nav-link">
-                                <span class="nav-icon">🖼️</span>
-                                图片压缩
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <span class="nav-icon">✂️</span>
-                                图片裁剪
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <span class="nav-icon">🔄</span>
-                                格式转换
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="nav-group">
-                    <h3 class="nav-group-title">更多工具</h3>
-                    <ul class="nav-list">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <span class="nav-icon">📝</span>
-                                待添加
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                <!-- 导航菜单将由 JavaScript 动态生成 -->
             </nav>
             <div class="sidebar-footer">
                 <p class="author">作者：Edward</p>
@@ -56,64 +27,96 @@
 
         <!-- 主要内容区域 -->
         <main class="main-container">
-            <header class="main-header">
-                <h2 class="page-title">图片压缩工具</h2>
-                <p class="page-subtitle">简单高效的在线图片压缩服务</p>
-            </header>
+            <!-- 图片压缩工具 -->
+            <div id="tool-001" class="tool-content" data-tool="tool-001">
+                <header class="main-header">
+                    <h2 class="page-title">图片压缩工具</h2>
+                    <p class="page-subtitle">简单高效的在线图片压缩服务</p>
+                </header>
 
-            <div class="content-area">
-                <!-- 上传区域 -->
-                <div class="upload-section" id="uploadSection">
-                    <div class="upload-area" id="dropZone">
-                        <input type="file" id="fileInput" accept="image/*" hidden>
-                        <img src="assets/icons/upload.svg" alt="上传图标" class="upload-icon">
-                        <p>拖拽图片到这里或点击上传</p>
-                        <p class="support-text">支持 PNG、JPG 等格式</p>
+                <div class="content-area">
+                    <!-- 上传区域 -->
+                    <div class="upload-section" id="uploadSection-001">
+                        <div class="upload-area" id="dropZone-001">
+                            <input type="file" id="fileInput-001" accept="image/*" hidden>
+                            <img src="tools/tool-001/assets/icons/upload.svg" alt="上传图标" class="upload-icon">
+                            <p>拖拽图片到这里或点击上传</p>
+                            <p class="support-text">支持 PNG、JPG 等格式</p>
+                        </div>
+                    </div>
+
+                    <!-- 图片预览和压缩控制区域 -->
+                    <div class="preview-section" id="previewSection-001" style="display: none;">
+                        <div class="preview-container">
+                            <!-- 原图预览 -->
+                            <div class="preview-box">
+                                <h3>原图</h3>
+                                <div class="image-container">
+                                    <img id="originalPreview-001" alt="原图预览">
+                                </div>
+                                <div class="image-info">
+                                    <span id="originalSize-001">大小: -- MB</span>
+                                    <span id="originalDimensions-001">尺寸: -- x --</span>
+                                </div>
+                            </div>
+
+                            <!-- 压缩后预览 -->
+                            <div class="preview-box">
+                                <h3>压缩后</h3>
+                                <div class="image-container">
+                                    <img id="compressedPreview-001" alt="压缩后预览">
+                                </div>
+                                <div class="image-info">
+                                    <span id="compressedSize-001">大小: -- MB</span>
+                                    <span id="compressedDimensions-001">尺寸: -- x --</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 压缩控制 -->
+                        <div class="compression-controls">
+                            <div class="quality-control">
+                                <label for="qualitySlider-001">压缩质量：<span id="qualityValue-001">80%</span></label>
+                                <input type="range" id="qualitySlider-001" min="0" max="100" value="80">
+                            </div>
+                            <button id="downloadBtn-001" class="download-btn">下载压缩后的图片</button>
+                            <button id="resetBtn-001" class="reset-btn">重新上传</button>
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- 图片预览和压缩控制区域 -->
-                <div class="preview-section" id="previewSection" style="display: none;">
-                    <div class="preview-container">
-                        <!-- 原图预览 -->
-                        <div class="preview-box">
-                            <h3>原图</h3>
-                            <div class="image-container">
-                                <img id="originalPreview" alt="原图预览">
-                            </div>
-                            <div class="image-info">
-                                <span id="originalSize">大小: -- MB</span>
-                                <span id="originalDimensions">尺寸: -- x --</span>
-                            </div>
-                        </div>
+            <!-- 工具2（预留） -->
+            <div id="tool-002" class="tool-content" data-tool="tool-002" style="display: none;">
+                <header class="main-header">
+                    <h2 class="page-title">恋爱预测</h2>
+                    <p class="page-subtitle">趣味性恋爱预测工具</p>
+                </header>
+                <div class="content-area">
+                    <!-- 工具2的内容将在这里实现 -->
+                </div>
+            </div>
 
-                        <!-- 压缩后预览 -->
-                        <div class="preview-box">
-                            <h3>压缩后</h3>
-                            <div class="image-container">
-                                <img id="compressedPreview" alt="压缩后预览">
-                            </div>
-                            <div class="image-info">
-                                <span id="compressedSize">大小: -- MB</span>
-                                <span id="compressedDimensions">尺寸: -- x --</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 压缩控制 -->
-                    <div class="compression-controls">
-                        <div class="quality-control">
-                            <label for="qualitySlider">压缩质量：<span id="qualityValue">80%</span></label>
-                            <input type="range" id="qualitySlider" min="0" max="100" value="80">
-                        </div>
-                        <button id="downloadBtn" class="download-btn">下载压缩后的图片</button>
-                        <button id="resetBtn" class="reset-btn">重新上传</button>
-                    </div>
+            <!-- 工具3（预留） -->
+            <div id="tool-003" class="tool-content" data-tool="tool-003" style="display: none;">
+                <header class="main-header">
+                    <h2 class="page-title">YouTube下载器</h2>
+                    <p class="page-subtitle">YouTube视频本地下载工具</p>
+                </header>
+                <div class="content-area">
+                    <!-- 工具3的内容将在这里实现 -->
                 </div>
             </div>
         </main>
     </div>
 
-    <script src="js/main.js"></script>
+    <!-- 基础脚本 -->
+    <script src="js/navigation.js"></script>
+    
+    <!-- 工具特定脚本 -->
+    <script src="tools/tool-001/js/main.js" data-tool="tool-001"></script>
+    <!-- 预留其他工具的脚本加载位置 -->
+    <script src="tools/tool-002/js/main.js" data-tool="tool-002"></script>
+    <script src="tools/tool-003/js/main.js" data-tool="tool-003"></script>
 </body>
 </html> 
