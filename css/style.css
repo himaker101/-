@@ -108,6 +108,7 @@ body {
 
 .main-header {
     margin-bottom: 2rem;
+    text-align: center;
 }
 
 .page-title {
@@ -273,7 +274,7 @@ button {
     background: #e5e5e7;
 }
 
-/* 响应���设计 */
+/* 响应式设计 */
 @media (max-width: 1024px) {
     .sidebar {
         width: 200px;
