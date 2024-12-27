@@ -12,6 +12,8 @@ async function initializeNavigation() {
         handleRoute();
         // 初始化工具特定的样式和脚本
         initializeToolResources();
+        // 初始化移动端菜单
+        initializeMobileMenu();
     } catch (error) {
         console.error('初始化导航失败:', error);
     }
@@ -178,4 +180,45 @@ function navigateToTool(toolId) {
 window.addEventListener('hashchange', handleRoute);
 
 // 初始化
-document.addEventListener('DOMContentLoaded', initializeNavigation); 
+document.addEventListener('DOMContentLoaded', initializeNavigation);
+
+// 初始化移动端菜单
+function initializeMobileMenu() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    const sidebar = document.querySelector('.sidebar');
+
+    if (!menuToggle || !navMenu) return;
+
+    // 点击菜单按钮时切换导航菜单
+    menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        menuToggle.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+    });
+
+    // 点击导航项时关闭菜单
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                navMenu.classList.remove('active');
+                menuToggle.textContent = '☰';
+            }
+        });
+    });
+
+    // 点击内容区域时关闭菜单
+    document.querySelector('.main-container').addEventListener('click', () => {
+        if (window.innerWidth <= 768 && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            menuToggle.textContent = '☰';
+        }
+    });
+
+    // 处理窗口大小变化
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            navMenu.classList.remove('active');
+            menuToggle.textContent = '☰';
+        }
+    });
+} 
